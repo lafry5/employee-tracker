@@ -1,7 +1,7 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
-const { createEmployee } = require("./db/connection");
-//const connection = require("./db/connection") //include everything in db folder
+//const { createEmployee } = require("./db/connection");
+const connection = require("./db/connection") //include everything in db folder
 
 function employeeManager() {
     inquirer
