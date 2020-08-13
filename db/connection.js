@@ -26,21 +26,35 @@ class DB {
     // createEmployee(employee) {  //addEmployee in index.js
     //     return this.connection.promise().query("INSERT INTO employee SET ?", employee )
     //     }
-    // }
+    
 
-    // updateEmployeeRole (role) { //updateRole in index.js
+    // updateEmployeeRole(role) { //updateRole in index.js
     //     this.connection.promise().query("DELETE FROM role WHERE ?", role )
     //     return this.connection.promise().query("INSERT INTO role WHERE ?", role)
     //     }
+    
 
     // newEmployee(employee) {
     //     return this.connection.promise().query("INSERT INTO employee WHERE ?", employee )
     //     addEmployee(employee);
     //     }
+    
 
     // newRole(role) {
-    //         return this.connection.promise().query("INSERT INTO role WHERE ?", role )
-    //         }
+    //     return this.connection.promise().query("INSERT INTO role WHERE ?", role )
+    //     }
+
+    // viewDepartments(department) {
+    //     return this.connection.promise().query("SELECT * FROM department WHERE ?", department )
+    //     }
+        
+    // viewEmployees(employee) {
+    //     return this.connection.promise().query("SELECT * FROM employee WHERE ?", employee )
+    //     } 
+        
+    // viewRoles(role) {
+    //     return this.connection.promise().query("SELECT * FROM role WHERE ?", role )
+    //     }
 
     }
     module.exports = new DB(connection);
