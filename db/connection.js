@@ -1,5 +1,5 @@
 // Make a connection to the db & run queries to db
-const mysql = require('mysql2');
+const mysql = require('mysql');
 
 // Create the connection to database
 const connection = mysql.createConnection({
@@ -23,24 +23,24 @@ class DB {
         this.connection = connection;
     }
 
-    createEmployee(employee) {  //addEmployee in index.js
-        return this.connection.promise().query("INSERT INTO employee SET ?", employee )
-        }
+    // createEmployee(employee) {  //addEmployee in index.js
+    //     return this.connection.promise().query("INSERT INTO employee SET ?", employee )
+    //     }
+    // }
+
+    // updateEmployeeRole (role) { //updateRole in index.js
+    //     this.connection.promise().query("DELETE FROM role WHERE ?", role )
+    //     return this.connection.promise().query("INSERT INTO role WHERE ?", role)
+    //     }
+
+    // newEmployee(employee) {
+    //     return this.connection.promise().query("INSERT INTO employee WHERE ?", employee )
+    //     addEmployee(employee);
+    //     }
+
+    // newRole(role) {
+    //         return this.connection.promise().query("INSERT INTO role WHERE ?", role )
+    //         }
+
     }
-
-    updateEmployeeRole (role) { //updateRole in index.js
-        this.connection.promise().query("DELETE FROM role WHERE ?", role )
-        return this.connection.promise().query("INSERT INTO role WHERE ?", role)
-        }
-
-    newEmployee(employee) {
-        return this.connection.promise().query("INSERT INTO employee WHERE ?", employee )
-        addEmployee(employee);
-        }
-
-    newRole(role) {
-            return this.connection.promise().query("INSERT INTO role WHERE ?", role )
-            }
-
-
-module.exports = new DB(connection);
+    module.exports = new DB(connection);
