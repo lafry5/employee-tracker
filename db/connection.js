@@ -1,6 +1,6 @@
 // Make a connection to the db & run queries to db
 const mysql = require('mysql');
-console.log("line3")
+// console.log("line3")
 // Create the connection to database
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -11,13 +11,13 @@ const connection = mysql.createConnection({
     password: 'Indigo5%',
     database: 'employee_db'
 });
-console.log("line14")
+// console.log("line14")
 connection.connect(err => {
  //   if (err) throw err;
     console.log("ERROR:", err)
     console.log('connected as id ' + connection.threadId);
 });
-console.log("line19")
+// console.log("line19")
 
 //Create a class called db
 class DB {
@@ -42,9 +42,9 @@ class DB {
 //     //     }
 
 
-//     // newRole(role) {
-//     //     return this.connection.promise().query("INSERT INTO role WHERE ?", role )
-//     //     }
+    newRole(role) {
+        return this.connection.promise().query("INSERT INTO role WHERE ?", role )
+        }
 
 //     // viewDepartments(department) {
 //     //     return this.connection.promise().query("SELECT * FROM department WHERE ?", department )
@@ -59,5 +59,5 @@ class DB {
 //     //     }
 
 }
-console.log("lin61")
+// console.log("lin61")
 module.exports = new DB(connection);
