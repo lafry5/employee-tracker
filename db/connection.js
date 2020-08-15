@@ -1,5 +1,5 @@
 // Make a connection to the db & run queries to db
-const mysql = require('mysql');
+const mysql = require('mysql2');
 // console.log("line3")
 // Create the connection to database
 const connection = mysql.createConnection({
@@ -42,13 +42,13 @@ class DB {
 //     //     }
 
 
-    newRole(role) {
-        return this.connection.promise().query("INSERT INTO role WHERE ?", role )
-        }
+        // newRole(role) {
+        //     return this.connection.promise().query("INSERT INTO role WHERE ?", role )
+        //     }
 
-//     // viewDepartments(department) {
-//     //     return this.connection.promise().query("SELECT * FROM department WHERE ?", department )
-//     //     }
+        viewDepts() {
+            return this.connection.promise().query("SELECT * FROM department;")
+        }
 
 //     // viewEmployees(employee) {
 //     //     return this.connection.promise().query("SELECT * FROM employee WHERE ?", employee )
@@ -59,5 +59,5 @@ class DB {
 //     //     }
 
 }
-// console.log("lin61")
+console.log("lin61")
 module.exports = new DB(connection);

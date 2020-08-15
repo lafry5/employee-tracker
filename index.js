@@ -1,6 +1,7 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
 //const { createEmployee } = require("./db/connection");
+const db = require("./db");
 const connection = require("./db/connection") //include everything in db folder
 
 function employeeManager() {
@@ -63,52 +64,60 @@ function addEmployee() {
             // console.log("--->", option)
             if (option[0] == "Manager") {
                 managerArray = ["1", "Manager", "190000", "2"];
-                // console.log(managerArray[0]);
-                // console.log(managerArray[1]);
+                console.log(managerArray[0] + 'is managerArray[0]');
+                console.log(managerArray[1]);
                 //Need to add additional function to map role to employee
+                addName();
             } else if (option[0] == "Engineer") {
                 engineerArray = ["2", "Engineer", "150000", "2"];
                 //Need to add additional function to map role to employee
+                addName();
             } else if (option[0] == "Sales") {
                 salesArray = ["3", "Sales", "100000", "1"];
                 //Need to add additional function to map role to employee
+                addName();
             } else if (option[0] == "Finance")
                 financeArray = ["4", "Finance", "125000", "3"];
                 //Need to add additional function to map role to employee
-        });
-
-        inquirer
-        .prompt([
-             {
-                type: 'input',
-                name: 'firstName',
-                message: "What is the employee's first name?" 
-              },
-              {
-                type: 'input',
-                name: 'lastName',
-                message: "Enter his/her last name"
-              }
-        ]).then(function(answers){
-            write(answers)
-            console.log(answers)
-        });
-        //     if (option[0] == "Manager") {
-        //         managerArray = ["1", "Manager", "190000", "2"];
-        //         // console.log(managerArray[0]);
-        //         // console.log(managerArray[1]);
-        //         //Need to add additional function to map role to employee
-        //     } else if (option[0] == "Engineer") {
-        //         engineerArray = ["2", "Engineer", "150000", "2"];
-        //         //Need to add additional function to map role to employee
-        //     } else if (option[0] == "Sales") {
-        //         salesArray = ["3", "Sales", "100000", "1"];
-        //         //Need to add additional function to map role to employee
-        //     } else if (option[0] == "Finance")
-        //         financeArray = ["4", "Finance", "125000", "3"];
-        //         //Need to add additional function to map role to employee
-        // });
-
-
-
+                addName();
+            });
 }//end of addEmployee()
+
+function addName(){
+    inquirer
+    .prompt([
+         {
+            type: 'input',
+            name: 'firstName',
+            message: "What is the employee's first name?" 
+          },
+          {
+            type: 'input',
+            name: 'lastName',
+            message: "Enter his/her last name"
+          },
+    ]).then(function(answers){
+        console.log(answers)
+        console.log(answers.firstName)
+    //     if (option[0] == "Manager") {
+    //         managerArray = ["1", "Manager", "190000", "2"];
+    //         // console.log(managerArray[0]);
+    //         // console.log(managerArray[1]);
+    //         //Need to add additional function to map role to employee
+    //     } else if (option[0] == "Engineer") {
+    //         engineerArray = ["2", "Engineer", "150000", "2"];
+    //         //Need to add additional function to map role to employee
+    //     } else if (option[0] == "Sales") {
+    //         salesArray = ["3", "Sales", "100000", "1"];
+    //         //Need to add additional function to map role to employee
+    //     } else if (option[0] == "Finance")
+    //         financeArray = ["4", "Finance", "125000", "3"];
+    //         //Need to add additional function to map role to employee
+    // });
+});
+}//end of addName()
+
+function viewDepartments(){
+    connnection.viewDepts()
+    console.log(department);
+}
