@@ -15,49 +15,51 @@ const connection = mysql.createConnection({
 connection.connect(err => {
  //   if (err) throw err;
     console.log("ERROR:", err)
-    console.log('connected as id ' + connection.threadId);
 });
 // console.log("line19")
 
-//Create a class called db
-class DB {
-    constructor(connection) {
-        this.connection = connection;
+class DB { //Provided by Tutor; need to re-review
+   constructor(connection) {
+   this.connection = connection;
     }
+  
+    // viewDepts() { //will update this based on results from getting viewRoles working
+    //     return this.connection.promise().query("SELECT department.name FROM department;")
+    // }
 
-//     // createEmployee(employee) {  //addEmployee in index.js
+    // viewEmploys() { //will update this based on results from getting viewRoles working
+    //     return this.connection.promise().query("SELECT first_name, last_name FROM employee;")
+    // } 
+
+    viewRoles(role) {  //cannot get this to work
+        // return this.connection.promise().query("SELECT role.title FROM role;")
+        connnection.query('SELECT * FROM role', function(err,res){ //Line needs updated
+            if(err) throw err;
+            console.log(res);    
+    });
+}
+
+//     // createEmployee(employee) {  //addEmployee in index.js; //will update this based on results from getting viewRoles working
 //     //     return this.connection.promise().query("INSERT INTO employee SET ?", employee )
 //     //     }
 
 
-//     // updateEmployeeRole(role) { //updateRole in index.js
+//     // updateEmployeeRole(role) { //updateRole in index.js; //will update this based on results from getting viewRoles working
 //     //     this.connection.promise().query("DELETE FROM role WHERE ?", role )
 //     //     return this.connection.promise().query("INSERT INTO role WHERE ?", role)
 //     //     }
 
 
-//     // newEmployee(employee) {
+//     // newEmployee(employee) { //will update this based on results from getting viewRoles working
 //     //     return this.connection.promise().query("INSERT INTO employee WHERE ?", employee )
 //     //     addEmployee(employee);
 //     //     }
 
 
-        // newRole(role) {
+        // newRole(role) { //will update this based on results from getting viewRoles working
         //     return this.connection.promise().query("INSERT INTO role WHERE ?", role )
         //     }
 
-        viewDepts() {
-            return this.connection.promise().query("SELECT department.name FROM department;")
-        }
-
-        viewEmployees(employee) {
-            return this.connection.promise().query("SELECT first_name, last_name FROM employee;")
-        } 
-
-        viewRoles() {
-            return this.connection.promise().query("SELECT role.title FROM role;")
-            }
-
 }  
 // console.log("lin61")
-module.exports = new DB(connection);
+module.exports = new DB(connection); //need to re-review

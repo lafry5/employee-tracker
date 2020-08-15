@@ -95,38 +95,31 @@ function addName(){
     ]).then(function(answers){
         console.log(answers)
         console.log(answers.firstName)
-    //     if (option[0] == "Manager") {
-    //         managerArray = ["1", "Manager", "190000", "2"];
-    //         // console.log(managerArray[0]);
-    //         // console.log(managerArray[1]);
-    //         //Need to add additional function to map role to employee
-    //     } else if (option[0] == "Engineer") {
-    //         engineerArray = ["2", "Engineer", "150000", "2"];
-    //         //Need to add additional function to map role to employee
-    //     } else if (option[0] == "Sales") {
-    //         salesArray = ["3", "Sales", "100000", "1"];
-    //         //Need to add additional function to map role to employee
-    //     } else if (option[0] == "Finance")
-    //         financeArray = ["4", "Finance", "125000", "3"];
-    //         //Need to add additional function to map role to employee
-    // });
+        //need to add code here
 });
 }//end of addName()
 
-async function viewRoles() {
-    const roles = await connection.viewRoles();
-    console.table(roles);
+async function viewRoles() {  //cannot get this to work
+    // const roles = await connection.viewRoles()
+    await connection.viewRoles();
+    // .then(res => {console.log(res[0])});
+    // console.table(roles);
+    // console.log(roles);
     // console.log(roles + 'roles');
     // console.log(typeof roles);
     // console.log(roles.title);
+
 }
 
-async function viewDepartments(){
+async function viewDepartments(){ //will update this based on results from getting viewRoles working
     const depts = await connection.viewDepts();
+    // console.log(JSON.stringify(depts))
     console.table(depts);
+    // console.log(depts.name);
 }
 
-async function viewEmployees(){
-    const employees = await connection.viewEmployees();
+async function viewEmployees(){ //will update this based on results from getting viewRoles working
+    const employees = await connection.viewEmploys();
     console.table(employees);
+    console.log(employees);
 }

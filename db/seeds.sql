@@ -1,52 +1,30 @@
+use employee_db;
 INSERT INTO department
-(id, name)
+    (name)
 VALUES
-(1, 'Sales');
-INSERT INTO department
-(id, name)
-VALUES
-(2, 'Engineering');
-INSERT INTO department
-(id, name)
-VALUES
-(3, 'Finance');
-
-
+    ('Sales'),
+    ('Engineering'),
+    ('Finance'),
+    ('Legal');
 INSERT INTO role
-(id, title, salary, department_id)
+    (title, salary, department_id)
 VALUES
-(1, 'Manager', 190000, 2);
-INSERT INTO role
-(id, title, salary, department_id)
-VALUES
-(2, 'Engineer', 150000, 2);
-INSERT INTO role
-(id, title, salary, department_id)
-VALUES
-(3, 'Sales', 100000, 1);
-INSERT INTO role
-(id, title, salary, department_id)
-VALUES
-(4, 'Finance', 125000, 3);
-
+    ('Sales Lead', 100000, 1),
+    ('Salesperson', 80000, 1),
+    ('Lead Engineer', 150000, 2),
+    ('Software Engineer', 120000, 2),
+    ('Account Manager', 160000, 3),
+    ('Accountant', 125000, 3),
+    ('Legal Team Lead', 250000, 4),
+    ('Lawyer', 190000, 4);
 INSERT INTO employee
-(first_name, last_name, role_id, manager_id)
+    (first_name, last_name, role_id, manager_id)
 VALUES
-('John', 'Doe', 2, 3);
-INSERT INTO employee
-(first_name, last_name, role_id, manager_id)
-VALUES
-('Mike', 'Chan', 3, 1);
-INSERT INTO employee
-(first_name, last_name, role_id, manager_id)
-VALUES
-('Ashley', 'Rodriguez', 1, null);
-INSERT INTO employee
-(first_name, last_name, role_id, manager_id)
-VALUES
--- Ashley is the third employee added to the db so her ID is 3
-('Kevin', 'Tupik', 2, 3); 
-INSERT INTO employee
-(first_name, last_name, role_id, manager_id)
-VALUES
-('Malia', 'Brown', 4, null);
+    ('John', 'Doe', 1, NULL),
+    ('Mike', 'Chan', 2, 1),
+    ('Ashley', 'Rodriguez', 3, NULL),
+    ('Kevin', 'Tupik', 4, 3),
+    ('Kunal', 'Singh', 5, NULL),
+    ('Malia', 'Brown', 6, 5),
+    ('Sarah', 'Lourd', 7, NULL),
+    ('Tom', 'Allen', 8, 7);
