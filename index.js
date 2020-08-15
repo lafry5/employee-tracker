@@ -1,7 +1,7 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
 //const { createEmployee } = require("./db/connection");
-const db = require("./db");
+// const db = require("./db");
 const connection = require("./db/connection") //include everything in db folder
 
 function employeeManager() {
@@ -40,10 +40,6 @@ function employeeManager() {
 } //end of employeeManager()
 
 employeeManager()
-
-// function viewRoles(role) {
-//     db.viewRoles(role);
-// }
 
 function addEmployee() {
     console.log('add Employee')
@@ -117,7 +113,20 @@ function addName(){
 });
 }//end of addName()
 
-function viewDepartments(){
-    connnection.viewDepts()
-    console.log(department);
+async function viewRoles() {
+    const roles = await connection.viewRoles();
+    console.table(roles);
+    // console.log(roles + 'roles');
+    // console.log(typeof roles);
+    // console.log(roles.title);
+}
+
+async function viewDepartments(){
+    const depts = await connection.viewDepts();
+    console.table(depts);
+}
+
+async function viewEmployees(){
+    const employees = await connection.viewEmployees();
+    console.table(employees);
 }

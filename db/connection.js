@@ -47,17 +47,17 @@ class DB {
         //     }
 
         viewDepts() {
-            return this.connection.promise().query("SELECT * FROM department;")
+            return this.connection.promise().query("SELECT department.name FROM department;")
         }
 
-//     // viewEmployees(employee) {
-//     //     return this.connection.promise().query("SELECT * FROM employee WHERE ?", employee )
-//     //     } 
+        viewEmployees(employee) {
+            return this.connection.promise().query("SELECT first_name, last_name FROM employee;")
+        } 
 
-//     // viewRoles(role) {
-//     //     return this.connection.promise().query("SELECT * FROM role WHERE ?", role )
-//     //     }
+        viewRoles() {
+            return this.connection.promise().query("SELECT role.title FROM role;")
+            }
 
-}
-console.log("lin61")
+}  
+// console.log("lin61")
 module.exports = new DB(connection);
