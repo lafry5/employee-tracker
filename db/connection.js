@@ -23,15 +23,23 @@ class DB { //Provided by Tutor; need to re-review
    this.connection = connection;
     }
   
-    // viewDepts() { //will update this based on results from getting viewRoles working
-    //     return this.connection.promise().query("SELECT department.name FROM department;")
-    // }
+ viewDepts(department) {
+    connection.query('SELECT * FROM department', function(err,res){ 
+        // console.log('----right after connection.query');
+        if(err) throw err;
+        console.log(res);    
+    });
+}
 
-    // viewEmploys() { //will update this based on results from getting viewRoles working
-    //     return this.connection.promise().query("SELECT first_name, last_name FROM employee;")
-    // } 
+   viewEmploys(employee) { 
+    connection.query('SELECT * FROM employee', function(err,res){ 
+        // console.log('----right after connection.query');
+        if(err) throw err;
+        console.log(res);    
+    });
+}
 
-    viewRoles(role) {  //cannot get this to work
+    viewRoles(role) {  
         // return this.connection.promise().query("SELECT role.title FROM role;")
         // console.log('in connection.js');
         connection.query('SELECT * FROM role', function(err,res){ 

@@ -18,7 +18,8 @@ function employeeManager() {
                 "Add a department",
                 "Add a role",
                 "Add an employee",
-                "Update an employee role"
+                "Update an employee role",
+                "Exit",                
             ]
         }).then(function (
             {option})
@@ -26,18 +27,27 @@ function employeeManager() {
             // console.log("--->", option)
             if (option[0] == "View all roles") {
                 viewRoles();
+                employeeManager();
             } else if (option[0] == "View all departments") {
                 viewDepartments();
+                employeeManager();
             } else if (option[0] == "View all employees") {
                 viewEmployees();
+                employeeManager();
             } else if (option[0] == "Add a department") {
                 addDepartment();
+                employeeManager();
             } else if (option[0] == "Add a role") {
                 addRole();
+                employeeManager();
             } else if (option[0] == "Add an employee") {
                 addEmployee();
-            } else if (option[0] == "Update an employee role") 
+                employeeManager();
+            } else if (option[0] == "Update an employee role") {
                 updateRole();
+                employeeManager();
+            } else if (option[0] == "Exit") 
+                exit();
         });
 } //end of employeeManager()
 
@@ -103,24 +113,20 @@ function addName(){
 
 async function viewRoles() {  
     const roles = await connection.viewRoles()
-    // await connection.viewRoles();
-    // .then(res => {console.log(res[0])});
     // console.table('----' + roles + 'in async function');
-    // console.log(roles);
-    // console.log(roles + 'roles');
-    // console.log(typeof roles);
-    // console.log(roles.title);
 }
 
-async function viewDepartments(){ //will update this based on results from getting viewRoles working
+async function viewDepartments(){ 
     const depts = await connection.viewDepts();
-    // console.log(JSON.stringify(depts))
-    console.table(depts);
-    // console.log(depts.name);
+    // console.table(depts);
 }
 
-async function viewEmployees(){ //will update this based on results from getting viewRoles working
+async function viewEmployees(){ 
     const employees = await connection.viewEmploys();
-    console.table(employees);
-    console.log(employees);
+    // console.table(employees);
+}
+
+function exit() {
+  console.log("Thanks for using the Employee Tracker!");
+  process.exit();
 }
