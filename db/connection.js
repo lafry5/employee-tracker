@@ -33,7 +33,9 @@ class DB { //Provided by Tutor; need to re-review
 
     viewRoles(role) {  //cannot get this to work
         // return this.connection.promise().query("SELECT role.title FROM role;")
-        connnection.query('SELECT * FROM role', function(err,res){ //Line needs updated
+        // console.log('in connection.js');
+        connection.query('SELECT * FROM role', function(err,res){ 
+            // console.log('----right after connection.query');
             if(err) throw err;
             console.log(res);    
     });

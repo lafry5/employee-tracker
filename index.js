@@ -2,6 +2,8 @@ const fs = require("fs");
 const inquirer = require("inquirer");
 //const { createEmployee } = require("./db/connection");
 // const db = require("./db");
+// const mysql = require('mysql2/promise');
+// const bluebird = require('bluebird');
 const connection = require("./db/connection") //include everything in db folder
 
 function employeeManager() {
@@ -99,16 +101,15 @@ function addName(){
 });
 }//end of addName()
 
-async function viewRoles() {  //cannot get this to work
-    // const roles = await connection.viewRoles()
-    await connection.viewRoles();
+async function viewRoles() {  
+    const roles = await connection.viewRoles()
+    // await connection.viewRoles();
     // .then(res => {console.log(res[0])});
-    // console.table(roles);
+    // console.table('----' + roles + 'in async function');
     // console.log(roles);
     // console.log(roles + 'roles');
     // console.log(typeof roles);
     // console.log(roles.title);
-
 }
 
 async function viewDepartments(){ //will update this based on results from getting viewRoles working
