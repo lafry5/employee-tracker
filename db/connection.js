@@ -1,5 +1,7 @@
 // Make a connection to the db & run queries to db
 const mysql = require('mysql2');
+// import {employeeManager} from '../index';
+// let manager = employeeManager();
 // console.log("line3")
 // Create the connection to database
 const connection = mysql.createConnection({
@@ -29,15 +31,17 @@ class DB { //Provided by Tutor; need to re-review
         if(err) throw err;
         console.log(res);    
     });
-}
+    // manager;
+    }
 
-   viewEmploys(employee) { 
+   viewEmploys(employee) {  
     connection.query('SELECT * FROM employee', function(err,res){ 
         // console.log('----right after connection.query');
         if(err) throw err;
         console.log(res);    
-    });
-}
+    });  
+        // manager;
+    } //end of viewEmploys
 
     viewRoles(role) {  
         // return this.connection.promise().query("SELECT role.title FROM role;")
@@ -47,11 +51,36 @@ class DB { //Provided by Tutor; need to re-review
             if(err) throw err;
             console.log(res);    
     });
+    // manager;
 }
 
-//     // createEmployee(employee) {  //addEmployee in index.js; //will update this based on results from getting viewRoles working
-//     //     return this.connection.promise().query("INSERT INTO employee SET ?", employee )
-//     //     }
+    createEmployee(employee) {  
+        console.log(answer + 'in connection')
+        answer = JSON.stringify(answer);
+        console.log(answer);
+        // console.log(answer[0]);
+        // employee.push(answer);
+        // console.log(answer);
+        // console.log(employee);
+        // connection.query('SELECT * FROM employee', function(err,res){
+        // console.log(res);
+        // }
+        // connection.query('INSERT INTO employee SET (id, first_name, last_name, role_id, manager_id) VALUES (answer[0], answer[1], answer[2], answer[3], answer[4]);', function(err,res){ 
+            // const params = [answer.id, answer.first_name, answer.last_name, answer.role_id, answer.manager_id];
+            // const sql = `INSERT INTO employee WHERE (id, first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?, ?)`;
+            // connection.run(sql, params, function(err, data) {
+            //     if (err) {
+            //       res.status(400).json({ error: err.message });
+            //       return;
+            //     }
+            // })
+        
+            connection.query('INSERT INTO employee VALUES (answer(0), answer(1), answer(2), answer(3), answer(4));', function(err,res){
+            if(err) throw err;
+            console.log(res);    
+    });
+        return employee;
+    }
 
 
 //     // updateEmployeeRole(role) { //updateRole in index.js; //will update this based on results from getting viewRoles working
