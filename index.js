@@ -55,10 +55,10 @@ function employeeManager() {
 employeeManager()
 
 function addEmployee() {
-    answer = [9, 'Tom', 'Allen', 9, 7];
-    console.log(answer);
+    answer = [11, 'John', 'Clark', 11, 7];
+    // console.log(answer);
     // console.log(employee);
-    const create = connection.createEmployee();
+    const create = connection.createEmployee(answer);
     // return employee;
 
 //     console.log('add Employee')

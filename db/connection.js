@@ -58,19 +58,15 @@ class DB { //Provided by Tutor; need to re-review
     } // end of viewRoles
 
     createEmployee(employee) {  
-        console.log(answer + 'in connection')
-        // answer = JSON.stringify(answer);
-        // console.log(answer);
-        // console.log(answer[0]);
-        // employee.push(answer);
-        // console.log(answer);
-        // console.log(employee);
-            console.log("line 77", answer[0])
-            // connection.query(`INSERT INTO employee (id, first_name, last_name, role_id, manager_id) SET (answer[0], answer[1], answer[2], answer[3], answer[4]);`, function(err,res){
-            connection.query(`INSERT INTO employee SET (${answer[0]}, ${answer[1]}, ${answer[2]}, ${answer[3]}, ${answer[4]});`, function(err,res){
+        // console.log(answer + 'in connection')
+        const newObject = Object.assign({}, answer);
+        answer = newObject;
+            // console.log(typeof(answer));
+            // console.log(answer);
+            connection.query(`INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES ("${answer[0]}", "${answer[1]}", "${answer[2]}", "${answer[3]}", "${answer[4]}");`, function(err,res){
             if(err) throw err;
-            console.log(employee);
-            console.log(res);    
+            console.log(employee + 'New employee added to the DB');
+            // console.log(res + 'response; line 78');    
     });
         return employee;
     } // end of createEmployee
