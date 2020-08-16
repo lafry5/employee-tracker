@@ -32,9 +32,12 @@ class DB { //Provided by Tutor; need to re-review
         console.log(res);    
     });
     // manager;
-    }
+    } // end of viewDepts
 
-   viewEmploys(employee) {  
+   viewEmploys(employee) { 
+    //    return this.connection.promise().query(
+    //     "SELECT * FROM employee;"
+    //    ); 
     connection.query('SELECT * FROM employee', function(err,res){ 
         // console.log('----right after connection.query');
         if(err) throw err;
@@ -52,35 +55,25 @@ class DB { //Provided by Tutor; need to re-review
             console.log(res);    
     });
     // manager;
-}
+    } // end of viewRoles
 
     createEmployee(employee) {  
         console.log(answer + 'in connection')
-        answer = JSON.stringify(answer);
-        console.log(answer);
+        // answer = JSON.stringify(answer);
+        // console.log(answer);
         // console.log(answer[0]);
         // employee.push(answer);
         // console.log(answer);
         // console.log(employee);
-        // connection.query('SELECT * FROM employee', function(err,res){
-        // console.log(res);
-        // }
-        // connection.query('INSERT INTO employee SET (id, first_name, last_name, role_id, manager_id) VALUES (answer[0], answer[1], answer[2], answer[3], answer[4]);', function(err,res){ 
-            // const params = [answer.id, answer.first_name, answer.last_name, answer.role_id, answer.manager_id];
-            // const sql = `INSERT INTO employee WHERE (id, first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?, ?)`;
-            // connection.run(sql, params, function(err, data) {
-            //     if (err) {
-            //       res.status(400).json({ error: err.message });
-            //       return;
-            //     }
-            // })
-        
-            connection.query('INSERT INTO employee VALUES (answer(0), answer(1), answer(2), answer(3), answer(4));', function(err,res){
+            console.log("line 77", answer[0])
+            // connection.query(`INSERT INTO employee (id, first_name, last_name, role_id, manager_id) SET (answer[0], answer[1], answer[2], answer[3], answer[4]);`, function(err,res){
+            connection.query(`INSERT INTO employee SET (${answer[0]}, ${answer[1]}, ${answer[2]}, ${answer[3]}, ${answer[4]});`, function(err,res){
             if(err) throw err;
+            console.log(employee);
             console.log(res);    
     });
         return employee;
-    }
+    } // end of createEmployee
 
 
 //     // updateEmployeeRole(role) { //updateRole in index.js; //will update this based on results from getting viewRoles working

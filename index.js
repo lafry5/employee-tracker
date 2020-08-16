@@ -59,7 +59,7 @@ function addEmployee() {
     console.log(answer);
     // console.log(employee);
     const create = connection.createEmployee();
-    return employee;
+    // return employee;
 
 //     console.log('add Employee')
 //     // prompt inquirer to ask for information
