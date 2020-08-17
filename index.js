@@ -7,8 +7,11 @@ const inquirer = require("inquirer");
 const connection = require("./db/connection"); //include everything in db folder
 const Employee = require("../my-team/lib/Employee");
 const cTable = require('console.table');
+// SET GLOBAL sql_mode = '<mode>';
+// SET SESSION sql_mode = '<mode>';
 answer = [];
 result = [];
+group = '';
 id = 8;
 dept_id = 4;
 
@@ -25,8 +28,9 @@ function employeeManager() {
                 "Add a department", // working
                 "Add a role", // working
                 "Add an employee", // working
-                "Update an employee role", // dummy response code working
-                "Exit", //working               
+                "Delete an employee role", // working
+                "Update an employee role", // working
+                "Exit" //working               
             ]
         }).then(function (
             {option})
@@ -50,13 +54,15 @@ function employeeManager() {
                 addRole();
                 // employeeManager();
              } else if (option[0] == "Add an employee") {
-                id++;
+                id++; 
                 addEmployee();
                 // employeeManager();
-            } else if (option[0] == "Update an employee role") {
+            } else if (option[0] == "Delete an employee role") {
                 deleteRole();
+                //employeeManager();
+            } else if (option[0] == "Change an employee role") {
                 changeRole();
-                employeeManager();
+                //employeeManager();
             } else if (option[0] == "Exit") 
                 exit();
         });
@@ -67,15 +73,22 @@ employeeManager()
 function addDepartment() {
     // console.log('If the user chose Marketing...')
     // answer = [5, "Marketing"];
+    console.log(dept_id + ' is the next available department ID');
     inquirer
     .prompt([
-      {
+        {
+            type: 'input',
+            name: 'deptID',
+            message: "What will be your department ID? (see comment above)"
+        },
+        {
         type: 'input',
-        name: 'dept',
-        message: "What Department would you like to add to the following (Sales: 1, Engineering: 2, Accounting: 3, Legal: 4)?"
+        name: 'group',
+        message: "What Department would you like to add to the following departments (original 4 departments were: Sales, Engineering, Accounting, Legal)?"
       }
     ]).then(result => {
-    answer = [dept_id, result.dept];
+    answer = [result.deptID, result.group];
+    // console.log(answer);
     const create = connection.newDept(answer);
 }) //end of inquirer
 }//end of addDepartment()
@@ -106,24 +119,50 @@ function addRole() {
 
 
 function changeRole() {
-    // console.log('If the user chose Full Stack Developer...')
-    // answer = [9, "Full Stack Developer", 95000, 2];
+    console.log(id + 'is the current id');
+    console.log(dept_id + 'is the current department id');
     inquirer
     .prompt([
-     {
+        {
+            type: 'input',
+            name: 'id',
+            message: "What is the next id to add?" 
+        },
+        {
         type: 'input',
-        name: 'changedRole',
-        message: "What role would you like to choose?" 
+        name: 'newRole',
+        message: "What is the role you'd like to add?" 
+      },
+      {
+        type: 'input',
+        name: 'salary',
+        message: "What is the salary for the role?"
+      },
+      {
+        type: 'input',
+        name: 'deptId',
+        message: "What is the Dept ID for the new role (Sales: 1, Engineering: 2, Accounting: 3, Legal: 4)?"
       }
     ]).then(result => {
-    // NEED TO FINISH THIS AND FIGURE IT OUT///
-    answer = [id, result.changedrole];
+    answer = [result.id, result.newRole, result.salary, result.deptId];
+
+    // console.log('If the user chose Full Stack Developer...')
+    // answer = [9, "Full Stack Developer", 95000, 2];
+    // inquirer
+    // .prompt([
+    //  {
+    //     type: 'input',
+    //     name: 'changedRole',
+    //     message: "What role would you like to choose?" 
+    //   }
+    // ]).then(result => {
+    // answer = [id, result.changedrole];
     const create = connection.changeRole(answer);
 }) //end of inquirer
 }// end of changeRole()
 
 function addEmployee() {
-        // addName()
+       // addName()
         inquirer
         .prompt([
          {
@@ -179,9 +218,8 @@ function addEmployee() {
 // //                 //Need to add additional function to map role to employee
 // //                // addName();
 // //             });
-// })
         }) //end of inquirer
-}//end of addEmployee()
+    }//end of addEmployee()
 
 // function addName() {
 //     inquirer
@@ -210,11 +248,46 @@ function addEmployee() {
 // }//end of addName()
 
 function deleteRole() {
-    //NEED TO UPDATE THIS//
-    console.log('If the user chose to update role 9...')
-    answer = [id, "Web Developer", 95000, dept_id];
+    inquirer
+    .prompt([
+     {
+        type: 'input',
+        name: 'role',
+        message: "What role would you like to delete (original ids were 1 to 8)?" 
+      }
+    ]).then(result => {
+    
+    //     if (role == "1") {
+    //         answer = [result.role, 'Sales Lead', 100000, 1];
+    //         const create = connection.deleteRole(answer);
+    //     } else if (role == "2") {
+    //         answer = [result.role, 'Salesperson', 80000, 1];
+    //         const create = connection.deleteRole(answer);
+    //     } else if (role == "3") {
+    //         answer = [result.role, 'Lead Engineer', 150000, 2];
+    //         const create = connection.deleteRole(answer);
+    //     } else if (role == "4") {
+    //         answer = [result.role, 'Software Engineer', 120000, 2];
+    //         const create = connection.deleteRole(answer);
+    //     } else if (role == "5") {
+    //         answer = [result.role, 'Account Manager', 160000, 3];
+    //         const create = connection.deleteRole(answer);
+    //      } else if (role == "6") {
+    //         answer = [result.role, 'Accountant', 125000, 3];
+    //         const create = connection.deleteRole(answer);
+    //     } else if (role == "7") {
+    //         answer = [result.role, 'Legal Team Lead', 250000, 4];
+    //         const create = connection.deleteRole(answer);
+    //     } else if (role == "8") 
+    //         answer = [result.role, 'Lawyer', 190000, 4];
+    //         // console.log(answer);
+    //         // console.log(typeof(answer));
+    //         const create = connection.deleteRole(answer);
+    // }) //end of inquirer
+    answer = [result.role];
     const create = connection.deleteRole(answer);
-}
+}) 
+}//end of deleteRole()
 
 
 async function viewRoles() {  
