@@ -6,8 +6,11 @@ const inquirer = require("inquirer");
 // const bluebird = require('bluebird');
 const connection = require("./db/connection"); //include everything in db folder
 const Employee = require("../my-team/lib/Employee");
+const cTable = require('console.table');
 answer = [];
 result = [];
+id = 8;
+dept_id = 4;
 
 function employeeManager() {
     // console.log('Inquirer code has already been demonstrated in other assignments. This assignment focuses on demonstrating the functionality between the user choice and the ability to connect to and manipulate the SQL database');
@@ -39,12 +42,15 @@ function employeeManager() {
                 viewEmployees();
                 employeeManager();
             } else if (option[0] == "Add a department") {
+                dept_id++;
                 addDepartment();
                 // employeeManager();
             } else if (option[0] == "Add a role") {
+                id++;
                 addRole();
                 // employeeManager();
              } else if (option[0] == "Add an employee") {
+                id++;
                 addEmployee();
                 // employeeManager();
             } else if (option[0] == "Update an employee role") {
@@ -69,7 +75,7 @@ function addDepartment() {
         message: "What Department would you like to add to the following (Sales: 1, Engineering: 2, Accounting: 3, Legal: 4)?"
       }
     ]).then(result => {
-    answer = [5, result.dept];
+    answer = [dept_id, result.dept];
     const create = connection.newDept(answer);
 }) //end of inquirer
 }//end of addDepartment()
@@ -93,7 +99,7 @@ function addRole() {
         message: "What is the Dept ID (Sales: 1, Engineering: 2, Accounting: 3, Legal: 4)?"
       }
     ]).then(result => {
-    answer = [20, result.newRole, result.salary, result.deptId];
+    answer = [id, result.newRole, result.salary, result.deptId];
     const create = connection.newRole(answer);
 }) //end of inquirer
 }//end of addRole
@@ -111,9 +117,10 @@ function changeRole() {
       }
     ]).then(result => {
     // NEED TO FINISH THIS AND FIGURE IT OUT///
-    answer = [9, result.changedrole];
+    answer = [id, result.changedrole];
     const create = connection.changeRole(answer);
-}
+}) //end of inquirer
+}// end of changeRole()
 
 function addEmployee() {
         // addName()
@@ -131,7 +138,7 @@ function addEmployee() {
           }
         ]).then(result => {
     // console.log(result + 'is result');
-        answer = [9, result.firstName, result.lastName, 9, 7];
+        answer = [id, result.firstName, result.lastName, id, dept_id];
         // console.log('If the user chose Tom Smith, for example...')
         // answer = [10, "Tom", "Smith", 10, 7];
         const create = connection.createEmployee(answer);
@@ -205,7 +212,7 @@ function addEmployee() {
 function deleteRole() {
     //NEED TO UPDATE THIS//
     console.log('If the user chose to update role 9...')
-    answer = [9, "Web Developer", 95000, 2];
+    answer = [id, "Web Developer", 95000, dept_id];
     const create = connection.deleteRole(answer);
 }
 

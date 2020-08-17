@@ -29,7 +29,8 @@ class DB { //Provided by Tutor; need to re-review
     connection.query('SELECT * FROM department', function(err,res){ 
         // console.log('----right after connection.query');
         if(err) throw err;
-        console.log(res);    
+        console.log(res);
+        console.table(res);    
     });
     // manager;
     } // end of viewDepts
@@ -41,7 +42,8 @@ class DB { //Provided by Tutor; need to re-review
     connection.query('SELECT * FROM employee', function(err,res){ 
         // console.log('----right after connection.query');
         if(err) throw err;
-        console.log(res);    
+        console.log(res);
+        console.table(res);    
     });  
         // manager;
     } //end of viewEmploys
@@ -52,7 +54,8 @@ class DB { //Provided by Tutor; need to re-review
         connection.query('SELECT * FROM role', function(err,res){ 
             // console.log('----right after connection.query');
             if(err) throw err;
-            console.log(res);    
+            console.log(res);
+            console.table(res);    
     });
     // manager;
     } // end of viewRoles
@@ -67,6 +70,7 @@ class DB { //Provided by Tutor; need to re-review
             connection.query(`INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES ("${answer[0]}", "${answer[1]}", "${answer[2]}", "${answer[3]}", "${answer[4]}");`, function(err,res){
             if(err) throw err;
             console.log(employee);
+            console.table(employee);
             console.log('New employee added to the DB');
             // console.log(res + 'response; line 78');    
     });
@@ -79,6 +83,7 @@ class DB { //Provided by Tutor; need to re-review
             connection.query(`INSERT INTO role (id, title, salary, department_id) VALUES ("${answer[0]}", "${answer[1]}", "${answer[2]}", "${answer[3]}");`, function(err,res){
                 if(err) throw err;
                 console.log(role);
+                console.table(role);
                 console.log('New role added to the DB');
     
         });
@@ -91,6 +96,7 @@ class DB { //Provided by Tutor; need to re-review
             connection.query(`INSERT INTO role (id, title, salary, department_id) VALUES ("${answer[0]}", "${answer[1]}", "${answer[2]}", "${answer[3]}");`, function(err,res){
                 if(err) throw err;
                 console.log(role);
+                console.table(role);
                 console.log('Role changed in the DB');
     
         });
@@ -103,6 +109,7 @@ class DB { //Provided by Tutor; need to re-review
             connection.query(`INSERT INTO department (id, name) VALUES ("${answer[0]}", "${answer[1]}");`, function(err,res){
                 if(err) throw err;
                 console.log(department);
+                console.table(department);
                 console.log('New department added to the DB');
     
         });
@@ -116,6 +123,7 @@ class DB { //Provided by Tutor; need to re-review
             connection.query(`DELETE FROM role WHERE id = "9";`, function(err,res){
                 if(err) throw err;
                 console.log(role);
+                console.table(role);
                 console.log('Role deleted in the DB');
     
         });
