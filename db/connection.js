@@ -63,13 +63,40 @@ class DB { //Provided by Tutor; need to re-review
         answer = newObject;
             // console.log(typeof(answer));
             // console.log(answer);
+            // connection.query(`INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES ("${auto_increment(id)}", "${answer[1]}", "${answer[2]}", "${auto_increment(role_id)}", "null");`, function(err,res){
             connection.query(`INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES ("${answer[0]}", "${answer[1]}", "${answer[2]}", "${answer[3]}", "${answer[4]}");`, function(err,res){
             if(err) throw err;
-            console.log(employee + 'New employee added to the DB');
+            console.log(employee);
+            console.log('New employee added to the DB');
             // console.log(res + 'response; line 78');    
     });
         return employee;
     } // end of createEmployee
+
+        newRole(role) { 
+            const newObject = Object.assign({}, answer);
+            answer = newObject;
+            connection.query(`INSERT INTO role (id, title, salary, department_id) VALUES ("${answer[0]}", "${answer[1]}", "${answer[2]}", "${answer[3]}");`, function(err,res){
+                if(err) throw err;
+                console.log(role);
+                console.log('New role added to the DB');
+    
+        });
+            return role;
+        } // end of newRole
+    
+        newDept(department) { 
+            const newObject = Object.assign({}, answer);
+            answer = newObject;
+            connection.query(`INSERT INTO department (id, name) VALUES ("${answer[0]}", "${answer[1]}");`, function(err,res){
+                if(err) throw err;
+                console.log(department);
+                console.log('New department added to the DB');
+    
+        });
+            return department;
+        } // end of newDept
+
 
 
 //     // updateEmployeeRole(role) { //updateRole in index.js; //will update this based on results from getting viewRoles working
@@ -78,15 +105,6 @@ class DB { //Provided by Tutor; need to re-review
 //     //     }
 
 
-//     // newEmployee(employee) { //will update this based on results from getting viewRoles working
-//     //     return this.connection.promise().query("INSERT INTO employee WHERE ?", employee )
-//     //     addEmployee(employee);
-//     //     }
-
-
-        // newRole(role) { //will update this based on results from getting viewRoles working
-        //     return this.connection.promise().query("INSERT INTO role WHERE ?", role )
-        //     }
 
 }  
 // console.log("lin61")
