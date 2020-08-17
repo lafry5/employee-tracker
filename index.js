@@ -59,8 +59,9 @@ function employeeManager() {
                 // employeeManager();
             } else if (option[0] == "Delete an employee role") {
                 deleteRole();
+                id--;
                 //employeeManager();
-            } else if (option[0] == "Change an employee role") {
+            } else if (option[0] == "Update an employee role") {
                 changeRole();
                 //employeeManager();
             } else if (option[0] == "Exit") 
@@ -94,9 +95,15 @@ function addDepartment() {
 }//end of addDepartment()
 
 function addRole() {
+    console.log(id + ' is the next available ID');
     inquirer
     .prompt([
-     {
+        {
+            type: 'input',
+            name: 'id',
+            message: "What is next available id (see comment above)?" 
+        },  
+        {
         type: 'input',
         name: 'newRole',
         message: "What is the role you'd like to add?" 
@@ -112,60 +119,73 @@ function addRole() {
         message: "What is the Dept ID (Sales: 1, Engineering: 2, Accounting: 3, Legal: 4)?"
       }
     ]).then(result => {
-    answer = [id, result.newRole, result.salary, result.deptId];
+    answer = [result.id, result.newRole, result.salary, result.deptId];
     const create = connection.newRole(answer);
 }) //end of inquirer
 }//end of addRole
 
 
 function changeRole() {
-    console.log(id + 'is the current id');
-    console.log(dept_id + 'is the current department id');
-    inquirer
-    .prompt([
-        {
-            type: 'input',
-            name: 'id',
-            message: "What is the next id to add?" 
-        },
-        {
-        type: 'input',
-        name: 'newRole',
-        message: "What is the role you'd like to add?" 
-      },
-      {
-        type: 'input',
-        name: 'salary',
-        message: "What is the salary for the role?"
-      },
-      {
-        type: 'input',
-        name: 'deptId',
-        message: "What is the Dept ID for the new role (Sales: 1, Engineering: 2, Accounting: 3, Legal: 4)?"
-      }
-    ]).then(result => {
-    answer = [result.id, result.newRole, result.salary, result.deptId];
-
-    // console.log('If the user chose Full Stack Developer...')
-    // answer = [9, "Full Stack Developer", 95000, 2];
-    // inquirer
-    // .prompt([
-    //  {
-    //     type: 'input',
-    //     name: 'changedRole',
-    //     message: "What role would you like to choose?" 
-    //   }
-    // ]).then(result => {
-    // answer = [id, result.changedrole];
-    const create = connection.changeRole(answer);
-}) //end of inquirer
+    console.log('You must delete the role, first');
+    console.log('Then select add role');
+   
+    // prompt("Did you delete the role (Y or N)?");
+    
+    // if(response == "Y" || "y" || "yes" || "YES") {
+    
+    //     inquirer
+    //     .prompt([
+    //         {
+    //             type: 'input',
+    //             name: 'id',
+    //             message: "What is the current id to change?" 
+    //         },
+    //         {
+    //         type: 'input',
+    //         name: 'newRole',
+    //         message: "What is the role you'd like to change?" 
+    //       },
+    //       {
+    //         type: 'input',
+    //         name: 'salary',
+    //         message: "What is the salary for the role?"
+    //       },
+    //       {
+    //         type: 'input',
+    //         name: 'deptId',
+    //         message: "What is the Dept ID for the role (Sales: 1, Engineering: 2, Accounting: 3, Legal: 4)?"
+    //       }
+    //     ]).then(result => {
+    //         answer = [result.id, result.newRole, result.salary, result.deptId];
+    //             // console.log('If the user chose Full Stack Developer...')
+    //         // answer = [9, "Full Stack Developer", 95000, 2];
+    //         // inquirer
+    //         // .prompt([
+    //         //  {
+    //         //     type: 'input',
+    //         //     name: 'changedRole',
+    //         //     message: "What role would you like to choose?" 
+    //         //   }
+    //         // ]).then(result => {
+    //         // answer = [id, result.changedrole];
+    //         const create = connection.changeRole(answer);
+    //         }) //end of inquirer
+    // } else if (response == "N" || "n" || "no" || "NO") {
+        employeeManager();
+    // }
 }// end of changeRole()
 
 function addEmployee() {
        // addName()
+       console.log(id + ' is the next available ID');
         inquirer
         .prompt([
-         {
+            {
+                type: 'input',
+                name: 'id',
+                message: "What is next available id (see comment above)?" 
+            }, 
+            {
             type: 'input',
             name: 'firstName',
             message: "What is the employee's first name?" 
@@ -174,10 +194,20 @@ function addEmployee() {
             type: 'input',
             name: 'lastName',
             message: "Enter his/her last name"
+          },
+          {
+            type: 'input',
+            name: 'roleId',
+            message: "What is the role ID (Sales Lead: 1, Salesperson: 2, Lead Engineer: 3, Software Engineer: 4, Account Manager: 5, Accountant: 6, Legal Team Lead: 7, Lawyer: 8)?"
+          },
+          {
+            type: 'input',
+            name: 'mgrId',
+            message: "What is the manager ID (John Doe: 1, Mike Chan: 2, Ashley Rodriguez: 3, Kevin Tupik: 4, Kunal Singh: 5, Malia Brown: 6, Sarah Lourd: 7, Tom Allen: 8)?"
           }
         ]).then(result => {
     // console.log(result + 'is result');
-        answer = [id, result.firstName, result.lastName, id, dept_id];
+        answer = [result.id, result.firstName, result.lastName, result.roleId, result.mgrId];
         // console.log('If the user chose Tom Smith, for example...')
         // answer = [10, "Tom", "Smith", 10, 7];
         const create = connection.createEmployee(answer);
@@ -248,6 +278,7 @@ function addEmployee() {
 // }//end of addName()
 
 function deleteRole() {
+    // console.log(id + ' is the next available ID'); 
     inquirer
     .prompt([
      {
