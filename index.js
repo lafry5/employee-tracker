@@ -19,9 +19,9 @@ function employeeManager() {
             choices: ["View all departments",  //working
                 "View all roles", //working
                 "View all employees", //working
-                "Add a department", // dummy response code working
-                "Add a role", // dummy response code working
-                "Add an employee", // dummy response code working
+                "Add a department", // working
+                "Add a role", // working
+                "Add an employee", // working
                 "Update an employee role", // dummy response code working
                 "Exit", //working               
             ]
@@ -40,17 +40,17 @@ function employeeManager() {
                 employeeManager();
             } else if (option[0] == "Add a department") {
                 addDepartment();
-                employeeManager();
+                // employeeManager();
             } else if (option[0] == "Add a role") {
                 addRole();
-                employeeManager();
+                // employeeManager();
              } else if (option[0] == "Add an employee") {
                 addEmployee();
-                employeeManager();
+                // employeeManager();
             } else if (option[0] == "Update an employee role") {
                 deleteRole();
-                addRole();
-                // employeeManager();
+                changeRole();
+                employeeManager();
             } else if (option[0] == "Exit") 
                 exit();
         });
@@ -59,23 +59,81 @@ function employeeManager() {
 employeeManager()
 
 function addDepartment() {
-    console.log('If the user chose Marketing...')
-    answer = [5, "Marketing"];
+    // console.log('If the user chose Marketing...')
+    // answer = [5, "Marketing"];
+    inquirer
+    .prompt([
+      {
+        type: 'input',
+        name: 'dept',
+        message: "What Department would you like to add to the following (Sales: 1, Engineering: 2, Accounting: 3, Legal: 4)?"
+      }
+    ]).then(result => {
+    answer = [5, result.dept];
     const create = connection.newDept(answer);
-}
+}) //end of inquirer
+}//end of addDepartment()
 
 function addRole() {
-    console.log('If the user chose Web Developer...')
-    answer = [9, "Web Developer", 95000, 2];
+    inquirer
+    .prompt([
+     {
+        type: 'input',
+        name: 'newRole',
+        message: "What is the role you'd like to add?" 
+      },
+      {
+        type: 'input',
+        name: 'salary',
+        message: "What is the salary for the role?"
+      },
+      {
+        type: 'input',
+        name: 'deptId',
+        message: "What is the Dept ID (Sales: 1, Engineering: 2, Accounting: 3, Legal: 4)?"
+      }
+    ]).then(result => {
+    answer = [20, result.newRole, result.salary, result.deptId];
     const create = connection.newRole(answer);
+}) //end of inquirer
+}//end of addRole
+
+
+function changeRole() {
+    // console.log('If the user chose Full Stack Developer...')
+    // answer = [9, "Full Stack Developer", 95000, 2];
+    inquirer
+    .prompt([
+     {
+        type: 'input',
+        name: 'changedRole',
+        message: "What role would you like to choose?" 
+      }
+    ]).then(result => {
+    // NEED TO FINISH THIS AND FIGURE IT OUT///
+    answer = [9, result.changedrole];
+    const create = connection.changeRole(answer);
 }
 
 function addEmployee() {
-        //addName()
-//     // console.log(answer);
-        // answer = [9, firstName, lastName, 9, 7];
-        console.log('If the user chose Tom Smith, for example...')
-        answer = [10, "Tom", "Smith", 10, 7];
+        // addName()
+        inquirer
+        .prompt([
+         {
+            type: 'input',
+            name: 'firstName',
+            message: "What is the employee's first name?" 
+          },
+          {
+            type: 'input',
+            name: 'lastName',
+            message: "Enter his/her last name"
+          }
+        ]).then(result => {
+    // console.log(result + 'is result');
+        answer = [9, result.firstName, result.lastName, 9, 7];
+        // console.log('If the user chose Tom Smith, for example...')
+        // answer = [10, "Tom", "Smith", 10, 7];
         const create = connection.createEmployee(answer);
 //     // return employee;
 
@@ -115,32 +173,37 @@ function addEmployee() {
 // //                // addName();
 // //             });
 // })
+        }) //end of inquirer
 }//end of addEmployee()
 
 // function addName() {
-    // inquirer
-    // .prompt([
-    //      {
-    //         type: 'input',
-    //         name: 'firstName',
-    //         message: "What is the employee's first name?" 
-    //       },
-    //       {
-    //         type: 'input',
-    //         name: 'lastName',
-    //         message: "Enter his/her last name"
-    //       }
-    //     ]).then(function () {
-//     // console.log(result + 'is result');
-//     result.id = autoincrement(id);
-//     const newEmployee = new Employee(result.id, result.firstName, result.lastName, result.role_id, result.manager_id);
-//     // result[0] = firstName;
-//     // result[1] = lastName;
-//     answer = [result.id, result.firstName, result.lastName, result.role_id, result.manager_id];
-// })
+//     inquirer
+//         .prompt([
+//          {
+//             type: 'input',
+//             name: 'firstName',
+//             message: "What is the employee's first name?" 
+//           },
+//           {
+//             type: 'input',
+//             name: 'lastName',
+//             message: "Enter his/her last name"
+//           }
+//         ]).then(result => {
+//     console.log(result + 'is result');
+// //     result.id = autoincrement(id);
+// //     const newEmployee = new Employee(result.id, result.firstName, result.lastName, result.role_id, result.manager_id);
+//         // let first_name = result.firstName;
+//         // let last_name = result.lastName;
+//         // console.log(typeof(last_name))
+//         // console.log(result)
+//         return result;
+// //     answer = [result.id, result.firstName, result.lastName, result.role_id, result.manager_id];
+// })      
 // }//end of addName()
 
 function deleteRole() {
+    //NEED TO UPDATE THIS//
     console.log('If the user chose to update role 9...')
     answer = [9, "Web Developer", 95000, 2];
     const create = connection.deleteRole(answer);

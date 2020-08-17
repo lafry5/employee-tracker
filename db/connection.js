@@ -84,6 +84,18 @@ class DB { //Provided by Tutor; need to re-review
         });
             return role;
         } // end of newRole
+
+        changeRole(role) { 
+            const newObject = Object.assign({}, answer);
+            answer = newObject;
+            connection.query(`INSERT INTO role (id, title, salary, department_id) VALUES ("${answer[0]}", "${answer[1]}", "${answer[2]}", "${answer[3]}");`, function(err,res){
+                if(err) throw err;
+                console.log(role);
+                console.log('Role changed in the DB');
+    
+        });
+            return role;
+        } // end of changeRole
     
         newDept(department) { 
             const newObject = Object.assign({}, answer);
