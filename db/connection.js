@@ -98,13 +98,17 @@ class DB { //Provided by Tutor; need to re-review
         } // end of newDept
 
 
-
-//     // updateEmployeeRole(role) { //updateRole in index.js; //will update this based on results from getting viewRoles working
-//     //     this.connection.promise().query("DELETE FROM role WHERE ?", role )
-//     //     return this.connection.promise().query("INSERT INTO role WHERE ?", role)
-//     //     }
-
-
+        deleteRole(role) { 
+            const newObject = Object.assign({}, answer);
+            answer = newObject;
+            connection.query(`DELETE FROM role WHERE id = "9";`, function(err,res){
+                if(err) throw err;
+                console.log(role);
+                console.log('Role deleted in the DB');
+    
+        });
+            return role;
+        } // end of deleteRole
 
 }  
 // console.log("lin61")
